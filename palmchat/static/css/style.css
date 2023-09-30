@@ -4,6 +4,28 @@ body {
     background: #F0F0F0;
 }
 
+h1{
+    margin: 5px 0;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: "roboto", sans-serif;
+}
+
+.chat-container{
+    background-color: white;
+    height: 90%;
+    /* overflow-y: scroll; */
+    border-radius: 10px;
+    /* padding: 10px; */
+    box-sizing: border-box;
+}
+
+.heading{
+    /* background-color: #eeeeee; */
+    border-radius: 10px 10px 0 0 ;
+   
+}
+
 .container {
     height: 100vh;
     width: 60%;
