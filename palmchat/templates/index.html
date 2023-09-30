@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+
+            <div class="message-screen">
+
+            </div>
+
+            <form action="/prompt" method="POST">
+                <input type="text" name="prompt">
+                <button type="submit"><img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2_bRl158_X1EHWrgEOc0VJsTyWUVCLwEQD75kw7jE3YGY2vigm5CM1V9jx6HMFROKWBc&usqp=CAU"
+                        alt=""></button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const formData = document.querySelector('input')
+        const formSubmit = document.querySelector('form')
+        const messageScreen = document.querySelector('.message-screen')
+        // const formButton = document.querySelector('button')
+        formSubmit.addEventListener('submit', (e) => {
+            e.preventDefault()
+            messageScreen.innerHTML = `<p>Loading...</p>`
+            // console.log(formData.value)
+            const form = new FormData(formSubmit);
+            // const form = new FormData(formData)
+            fetch('/prompt', {
+                method: 'POST',
+                body: form
+            }).then(response => response.text()).then(data => {
+                // console.log(data)
+                for (let i in data) {
+                    if (data[i] == ' ') {
+                        data[i] = '&nbsp;'
+                    }
+                    if (data[i] == '\n') {
+                        data[i] = '<br>'
+                    }
+
+                }
+
+                messageScreen.innerHTML = `<p>${data}</p>`
+            })
+        })
+        formData.addEventListener('keydown', (event) => {
+            if (event.key == 'Enter') {
+                event.preventDefault()
+                formSubmit.dispatchEvent(new Event('submit'));
+            }
+        })
+    </script>
+</body>
+
+</html>
