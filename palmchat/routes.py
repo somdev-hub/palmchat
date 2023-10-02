@@ -4,20 +4,15 @@ from flask_login import login_user
 from werkzeug.security import check_password_hash, generate_password_hash
 import palm
 import database as database
-from User import User
-
-app = flask.Flask(__name__)
-
-conn = database.connect()
-
-cur = conn.cursor()
-
-cur.execute("CREATE TABLE IF NOT EXISTS users(email varchar(100) PRIMARY KEY,name varchar(100) NOT NULL,password varchar(100) NOT NULL);")
-conn.commit()
+from palmchat.app.User import User
+from app import app
 
 app.secret_key = 'super secret string'
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
+
+conn = database.connect()
+cur=conn.cursor()
 
 
 @login_manager.user_loader
@@ -102,9 +97,3 @@ def message():
     prompt = flask.request.args.get('prompt')
     # print(prompt)
     return flask.render_template('message.html', prompt=prompt)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
-    cur.close()
-    conn.close()
