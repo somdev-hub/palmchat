@@ -13,15 +13,23 @@
 
 <body>
     <div class="container">
+        <div class="recent-searches">
+            <h3>Recent Searches</h3>
+            <ul>
+                {% for search in prompts %}
+                <li><a href="/search/{{ search }}">{{ search[1] }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
         <div class="content">
             <div class="chat-container">
                 <div class="heading">
-                    
+                    <img src="{{ url_for('static', filename='assets/menu-icon.svg') }}" alt="" class="hamburger">
                     <h1>PALMCHAT</h1>
                 </div>
 
                 <div class="message-screen">
-    
+
                 </div>
             </div>
 
@@ -68,6 +76,20 @@
                 formSubmit.dispatchEvent(new Event('submit'));
             }
         })
+
+        const sidebar = document.querySelector(".recent-searches")
+        const hamburger = document.querySelector(".hamburger")
+        const content = document.querySelector(".message-screen")
+
+        hamburger.addEventListener("click", (e) => {
+            e.preventDefault()
+            sidebar.classList.toggle("active")
+        })
+        content.addEventListener("click", (e) => {
+            e.preventDefault()
+            sidebar.classList.remove("active")
+        })
+
     </script>
 </body>
 

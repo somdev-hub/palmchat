@@ -1,6 +1,11 @@
 import google.generativeai as palm
+from dotenv import load_dotenv
+import os
 
-palm.configure(api_key='AIzaSyDVayFnx5Gu39VSMQCcwXWmNNSBoopaFSY')
+load_dotenv()
+
+
+palm.configure(api_key=os.getenv("GOOGLE_PALM_API_KEY"))
 
 
 def chat(messages):

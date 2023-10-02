@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="signup-container">
+        <div class="signup-form">
+            <h3>Login</h3>
+            <form name="loginForm" method="POST" action="/login">
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+                <p>Don't have an account? <b> <a href="/signup">Signup</a></b></p>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.querySelector('form')
+        signupForm.addEventListener('submit', (e) => {
+            // e.preventDefault();
+            const formData = new FormData(loginForm);
+            fetch('/login', {
+                method: 'POST',
+                body: formData
+            }).then(res => res.text()).then(data => typeof (data) == String ? alert(data) : alert("success")).catch(err => console.log(err));
+        });
+    </script>
+</body>
+
+</html>
