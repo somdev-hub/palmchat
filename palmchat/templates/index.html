@@ -17,7 +17,7 @@
             <h3>Recent Searches</h3>
             <ul>
                 {% for search in prompts %}
-                <li><a href="/search/{{ search }}">{{ search[1] }}</a></li>
+                <li><a href="/search/{{ search }}">{{ search.prompt }}</a></li>
                 {% endfor %}
             </ul>
         </div>

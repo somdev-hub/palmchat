@@ -1,23 +1,20 @@
 from flask_login import UserMixin
 import database as database
+# from app import UserAccount
 
 class User(UserMixin):
-    def __init__(self, email, password, name):
+    def __init__(self, uid, email):
+        self.id = uid
         self.email = email
-        self.password = password
-        self.name = name
-        self.id = email
-
+        
     @staticmethod
-    def get(email):
-        conn = database.connect()
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM users WHERE email=%s;", (email,))
-        user = cur.fetchone()
-        conn.commit()
-        cur.close()
-        conn.close()
+    def get(user):
+        # cur.execute("SELECT * FROM users WHERE email=?;", (email,))
+        # user = cur.fetchone()
+        # conn.commit()
+        # user = UserAccount.query.filter_by(email=email).first()
         if user:
-            return User(email=user[0], password=user[2], name=user[1])
+            # return User(email=user[0], password=user[2], name=user[1])
+            return User(email=user.email, password=user.password, name=user.name)
         else:
             return None
