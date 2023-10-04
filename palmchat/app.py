@@ -144,6 +144,7 @@ def signup_post():
             return flask.redirect('/')
     except Exception as e:
         print(e)
+        return flask.Response(response="something went wrong! Please try again", status=500, mimetype='text/plain')
 
 
 @app.route('/prompt', methods=['POST'])
