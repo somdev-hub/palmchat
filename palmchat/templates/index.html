@@ -1,96 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <title>Palmchat</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-
-<body>
+  <body>
     <div class="container">
-        <div class="recent-searches">
-            <h3>Recent Searches</h3>
-            <ul>
-                {% for search in prompts %}
-                <li><a href="/search/{{ search }}">{{ search.prompt }}</a></li>
-                {% endfor %}
-            </ul>
+      <div class="recent-searches">
+        <h3>Recent Searches</h3>
+        <ul>
+          {% for search in prompts %}
+          <li data-id="{{search[0]}}" class="recent">{{search[1]}}</li>
+          {% endfor %}
+        </ul>
+        <div class="logout-button">
+          <button>
+            <a href="/logout">Logout</a>
+          </button>
         </div>
-        <div class="content">
-            <div class="chat-container">
-                <div class="heading">
-                    <img src="{{ url_for('static', filename='assets/menu-icon.svg') }}" alt="" class="hamburger">
-                    <h1>PALMCHAT</h1>
-                </div>
+      </div>
+      <div class="content">
+        <div class="chat-container">
+          <div class="heading">
+            <img
+              src="{{ url_for('static', filename='assets/menu-icon.svg') }}"
+              alt=""
+              class="hamburger"
+            />
+            <h1>PALMCHAT</h1>
+          </div>
 
-                <div class="message-screen">
-
-                </div>
-            </div>
-
-            <form action="/prompt" method="POST">
-                <input type="text" name="prompt">
-                <button type="submit"><img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2_bRl158_X1EHWrgEOc0VJsTyWUVCLwEQD75kw7jE3YGY2vigm5CM1V9jx6HMFROKWBc&usqp=CAU"
-                        alt=""></button>
-            </form>
+          <div class="message-screen">
+            <!-- {% if getPrompt %}
+            <p>{{ getPrompt }}</p>
+            {% endif %} -->
+          </div>
         </div>
+
+        <form action="/prompt" method="POST">
+          <input type="text" name="prompt" />
+          <button type="submit">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2_bRl158_X1EHWrgEOc0VJsTyWUVCLwEQD75kw7jE3YGY2vigm5CM1V9jx6HMFROKWBc&usqp=CAU"
+              alt=""
+            />
+          </button>
+        </form>
+      </div>
     </div>
     <script>
-        const formData = document.querySelector('input')
-        const formSubmit = document.querySelector('form')
-        const messageScreen = document.querySelector('.message-screen')
-        // const formButton = document.querySelector('button')
-        formSubmit.addEventListener('submit', (e) => {
-            e.preventDefault()
-            messageScreen.innerHTML = `<p>Loading...</p>`
-            // console.log(formData.value)
-            const form = new FormData(formSubmit);
-            // const form = new FormData(formData)
-            fetch('/prompt', {
-                method: 'POST',
-                body: form
-            }).then(response => response.text()).then(data => {
-                // console.log(data)
-                for (let i in data) {
-                    if (data[i] == ' ') {
-                        data[i] = '&nbsp;'
-                    }
-                    if (data[i] == '\n') {
-                        data[i] = '<br>'
-                    }
-
-                }
-
-                messageScreen.innerHTML = `<p>${data}</p>`
-            })
+      const formData = document.querySelector("input");
+      const formSubmit = document.querySelector("form");
+      const messageScreen = document.querySelector(".message-screen");
+      // const formButton = document.querySelector('button')
+      formSubmit.addEventListener("submit", (e) => {
+        e.preventDefault();
+        messageScreen.innerHTML = `<p>Loading...</p>`;
+        // console.log(formData.value)
+        const form = new FormData(formSubmit);
+        // const form = new FormData(formData)
+        fetch("/prompt", {
+          method: "POST",
+          body: form,
         })
-        formData.addEventListener('keydown', (event) => {
-            if (event.key == 'Enter') {
-                event.preventDefault()
-                formSubmit.dispatchEvent(new Event('submit'));
+          .then((response) => response.text())
+          .then((data) => {
+            data = data.replace(/\*/g, "\n*");
+            data = data.split(" ");
+            for (let i in data) {
+              if (data[i] == " ") {
+                data[i] = "&nbsp;";
+              }
+              if (data[i].startsWith("\n*")) {
+                data[i] = "<br>" + data[i];
+              }
+              if (data[i] == "\n") {
+                data[i] = "<br>";
+              }
             }
-        })
+            messageScreen.innerHTML = `<p>${data.join(" ")}</p>`;
+          });
+      });
+      formData.addEventListener("keydown", (event) => {
+        if (event.key == "Enter") {
+          event.preventDefault();
+          formSubmit.dispatchEvent(new Event("submit"));
+        }
+      });
 
-        const sidebar = document.querySelector(".recent-searches")
-        const hamburger = document.querySelector(".hamburger")
-        const content = document.querySelector(".message-screen")
+      const sidebar = document.querySelector(".recent-searches");
+      const hamburger = document.querySelector(".hamburger");
+      const content = document.querySelector(".message-screen");
 
-        hamburger.addEventListener("click", (e) => {
-            e.preventDefault()
-            sidebar.classList.toggle("active")
-        })
-        content.addEventListener("click", (e) => {
-            e.preventDefault()
-            sidebar.classList.remove("active")
-        })
+      hamburger.addEventListener("click", (e) => {
+        e.preventDefault();
+        sidebar.classList.toggle("active");
+      });
+      content.addEventListener("click", (e) => {
+        e.preventDefault();
+        sidebar.classList.remove("active");
+      });
 
+      const liElements = document.querySelectorAll(".recent");
+      // console.log(liElements);
+
+      liElements.forEach((li) => {
+        li.addEventListener("click", () => {
+          // console.log(li);
+          const id = li.dataset.id;
+          fetch(`/search/${id}`)
+            .then((response) => response.text())
+            .then((data) => {
+              // console.log(data);
+              messageScreen.innerHTML = `<p>${data}</p>`;
+              // Do something with the data
+            })
+            .catch((error) => console.error(error));
+        });
+      });
     </script>
-</body>
-
+  </body>
 </html>

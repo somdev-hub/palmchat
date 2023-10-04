@@ -1,8 +1,8 @@
 body {
-    margin: 0;
-    padding: 0;
-    background: #F0F0F0;
-    font-family: "roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
+  font-family: "roboto", sans-serif;
 }
 
 h1,
@@ -10,196 +10,213 @@ h2,
 h3,
 h5,
 p {
-    margin: 0;
+  margin: 0;
 }
 
 ul {
-    padding: 0;
+  padding: 0;
 }
 
 ul li {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 a {
-    /* color: black; */
-    text-decoration: none;
+  /* color: black; */
+  text-decoration: none;
 }
 
 h1 {
-    margin: 5px 0;
-    text-align: center;
-    font-size: 1.5rem;
+  margin: 5px 0;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 .chat-container {
-    background-color: white;
-    height: 90%;
-    /* overflow-y: scroll; */
-    border-radius: 10px;
-    /* padding: 10px; */
-    box-sizing: border-box;
+  background-color: white;
+  height: 90%;
+  /* overflow-y: scroll; */
+  border-radius: 10px;
+  /* padding: 10px; */
+  box-sizing: border-box;
 }
 
 .heading {
-    /* background-color: #eeeeee; */
-    border-radius: 10px 10px 0 0;
-
+  /* background-color: #eeeeee; */
+  border-radius: 10px 10px 0 0;
 }
 
-.heading img{
-    display: none;
+.heading img {
+  display: none;
 }
 
 .container {
-    height: 100vh;
-    /* width: 60%; */
-    /* margin: 0 auto; */
-    background: #eeeeee;
-    border-radius: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    display: flex;
-    /* flex-direction: column; */
-    /* justify-content: flex-end; */
+  height: 100vh;
+  /* width: 60%; */
+  /* margin: 0 auto; */
+  background: #eeeeee;
+  border-radius: 10px;
+  padding: 10px;
+  gap: 10px;
+  box-sizing: border-box;
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: flex-end; */
 }
 
 .recent-searches {
-    display: flex;
-    flex-direction: column;
-    width: 35%;
-    /* gap: 5px; */
-    padding: 5px;
-    box-sizing: border-box;
-    /* height: 10%; */
-    overflow-y: scroll;
-    /* border-radius: 10px; */
-    /* background-color: white; */
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  position: relative;
+  /* gap: 5px; */
+  padding: 5px;
+  box-sizing: border-box;
+  /* height: 10%; */
+  overflow-y: scroll;
+  /* border-radius: 10px; */
+  /* background-color: white; */
 }
 
-.recent-searches ul{
-    margin-top: 5%;
+.logout-button{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
-.recent-searches li{
-    border-bottom: 1px solid #000;
-    padding-bottom: 10px;
-    margin-bottom: 5%;
+.logout-button button{
+  width: 100%;
 }
 
-.recent-searches a{
-    text-decoration: none;
-    color: black;
+.recent-searches ul {
+  margin-top: 5%;
+}
+
+.recent-searches li {
+  border-bottom: 1px solid #000;
+  padding-bottom: 10px;
+  margin-bottom: 5%;
+}
+
+.recent-searches a {
+  text-decoration: none;
+  color: black;
 }
 
 form {
-
-    display: flex;
-    gap: 5px;
-    padding: 0 10px;
+  display: flex;
+  gap: 5px;
+  padding: 0 10px;
 }
 
 input {
-    width: 100%;
-    height: 30px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    height: 3rem;
-    border: 3px solid #ccc;
-    padding: 5px;
-    font-size: 1rem;
-    margin-bottom: 10px;
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 3rem;
+  border: 3px solid #ccc;
+  padding: 5px;
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
 button {
-    width: 4rem;
-    border-radius: 10px;
-    border: none;
-    height: 3rem;
-    cursor: pointer;
-    border: 3px solid #ccc;
+  width: 4rem;
+  border-radius: 10px;
+  border: none;
+  height: 3rem;
+  cursor: pointer;
+  border: 3px solid #ccc;
 }
 
 button img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .content {
-    height: 100%;
-    width: 75%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24), 0 2px 6px rgba(0, 0, 0, 0.12);
+  height: 100%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24), 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .message-screen {
-    height: 90%;
-    overflow-y: scroll;
-    border-radius: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    background: white;
-    font-family: 'Roboto', sans-serif;
+  height: 90%;
+  overflow-y: scroll;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  background: white;
+  font-family: "Roboto", sans-serif;
 }
 
+.recent-searches::-webkit-scrollbar {
+  display: none;
+}
 .message-screen::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 @media only screen and (max-width: 600px) {
-    .container {
-        width: 100%;
-    }
+  .container {
+    width: 100%;
+  }
 
-    .content {
-        height: 100%;
-        width: 100%;
-    }
+  .content {
+    height: 100%;
+    width: 100%;
+  }
 
-    .recent-searches {
-        position: fixed;
-        background: #eeeeee;
-        height: 100%;
-        width: 80%;
-        padding: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24), 0 2px 6px rgba(0, 0, 0, 0.12);
-        /* border-radius: 0 10px 10px 0; */
-        left: -100%;
-        transition: 0.5s ease-in-out;
-    }
+  .recent-searches {
+    position: fixed;
+    background: #eeeeee;
+    height: 100%;
+    width: 80%;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24), 0 2px 6px rgba(0, 0, 0, 0.12);
+    /* border-radius: 0 10px 10px 0; */
+    left: -100%;
+    transition: 0.5s ease-in-out;
+  }
 
-    .active{
-        left: 0;
-    }
+  .logout-button{
+    width: 90%;
+    bottom: 5%;
+    padding: 0 auto;
+  }
 
-    .heading{
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        
-    }
+  .active {
+    left: 0;
+  }
 
-    .heading img{
-        display: flex;
-        width: 20px;
-    }
+  .heading {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
 
-    .heading h1{
-        margin: 0 auto;
-        font-size: 1.3rem;
-    }
-    
+  .heading img {
+    display: flex;
+    width: 20px;
+  }
 
-    .recent-searches ul{
-        margin-top: 10%;
-    }
-    .recent-searches li{
-        margin-bottom: 10%;
-    }
+  .heading h1 {
+    margin: 0 auto;
+    font-size: 1.3rem;
+  }
 
-
+  .recent-searches ul {
+    margin-top: 10%;
+  }
+  .recent-searches li {
+    margin-bottom: 10%;
+  }
 }
